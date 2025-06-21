@@ -1,0 +1,18 @@
+# Hospital Management System API
+
+Welcome to the Hospital Management System repository! This project, developed by **Asoh Yannick Anoh**, is designed to streamline hospital operations with a comprehensive set of API endpoints.
+
+As a Full Stack TypeScript Developer proficient in Node.js and React, I focus on creating highly secure, robust, and scalable software solutions tailored to meet business requirements. 
+
+### Technologies Used:
+1. **Node.js**: Provides an easy backend core API for developing the web server with minimal configurations.
+2. **Express.js**: Offers strong, reliable, and flexible API endpoints for the backend.
+3. **TypeScript**: Enables the development of strong, maintainable application code that is free from bugs.
+4. **MongoDB**: Serves as a well-organized data source for efficient data storage and retrieval.
+5. **Stripe**: Integrates payment processing for patient transactions.
+6. **JWT (JSON Web Token)**: Ensures secure user and admin authentication and authorization.
+
+### API Endpoints:
+The system includes endpoints for managing patients, appointments, doctors, billing, inventory, pharmacy, lab tests, staff, emergencies, notifications, and reports.
+
+Feel free to explore and contribute!
