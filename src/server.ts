@@ -1,10 +1,11 @@
 import 'dotenv/config';
-import express, { Application, Request, Response} from 'express';
+import express, { Application } from 'express';
 import morgan from 'morgan';
 import connectedToDB from './config/databaseConfig/databaseConfig';
 import cors from 'cors';
 import compression from 'compression';
 import helmet from 'helmet';
+import authRoute from './controller/auth/auth.controller';
 const app: Application = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -22,9 +23,8 @@ app.use(cors({
 }));
 app.use(compression());
 app.use(helmet());
-app.get('/test', (_req: Request, res: Response) => {
-  res.status(200).json({message: "hello from our express.js server"});
-})
+// Routes
+app.use(`/api/${API_VERSION}/auth`, authRoute);
 async function serve() {
     try {
         await connectedToDB(),
