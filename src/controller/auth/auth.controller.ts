@@ -5,8 +5,10 @@ import { validateUserLogin, validateUserRegisteration } from '../../validator/va
 import { login } from '../../service/impl/auth/login/login.impl';
 import { authenticationToken } from '../../middleware/auth/authenticationMiddleware';
 import { logout } from '../../service/impl/auth/logout/logout.impl';
+import { fetchUsers } from '../../service/impl/auth/retrieveUsers/fetchUsers.impl';
 const router = express.Router();
 router.post('/create-account', globalValidator(validateUserRegisteration), register);
 router.post('/login', authenticationToken, globalValidator(validateUserLogin), login);
 router.post('/logout', authenticationToken, logout);
+router.get('/fetch-users', authenticationToken, fetchUsers);
 export default router;
