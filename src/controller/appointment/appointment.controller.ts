@@ -6,9 +6,11 @@ import { validateBookedAppointment, validateUpdatedBookedAppointment } from '../
 import { showAppointments } from '../../service/impl/appointment/showAppointments/showAppointments.impl';
 import { showAppointment } from '../../service/impl/appointment/showAppointment/showAppointment.impl';
 import { updateAppointment } from '../../service/impl/appointment/updateAppointment/updateAppointment.impl';
+import { deleteAppointment } from '../../service/impl/appointment/deleteAppointment/deleteAppointment.impl';
 const router = express.Router();
 router.post('/book-appointment', authenticationToken, globalValidator(validateBookedAppointment), bookAnAppointment);
 router.get('/show-appointments', authenticationToken, showAppointments);
 router.get('/show-appointment/:id', authenticationToken, showAppointment);
-router.put('/update-appointment/:id', authenticationToken, globalValidator(validateUpdatedBookedAppointment), updateAppointment)
+router.put('/update-appointment/:id', authenticationToken, globalValidator(validateUpdatedBookedAppointment), updateAppointment);
+router.delete('/delete-appointment/:id', authenticationToken, deleteAppointment);
 export default router;
