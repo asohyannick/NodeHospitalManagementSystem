@@ -6,9 +6,11 @@ import { validateAddADoctorRequest, validateUpdatedDoctorRequest } from '../../v
 import { showDoctors } from '../../service/impl/doctor/showDoctors/showDoctors.impl';
 import { showDoctor } from '../../service/impl/doctor/showDoctor/showDoctor.impl';
 import { updateDoctor } from '../../service/impl/doctor/updateDoctor/updateDoctor.impl';
+import { deleteDoctor } from '../../service/impl/doctor/deleteDoctor/deleteDoctor.impl';
 const router = express.Router();
 router.post('/add-doctor', authenticationToken, globalValidator(validateAddADoctorRequest), addADoctor);
 router.get('/show-doctors', authenticationToken, showDoctors);
 router.get('/show-doctor/:id', authenticationToken, showDoctor);
 router.put('/update-doctor/:id', authenticationToken, globalValidator(validateUpdatedDoctorRequest), updateDoctor);
+router.delete('/delete-doctor/:id', authenticationToken, deleteDoctor);
 export default router;
