@@ -2,11 +2,13 @@ import express from 'express';
 import { authenticationToken } from '../../middleware/auth/authenticationMiddleware';
 import { bookAnAppointment } from '../../service/impl/appointment/newAppointment/newAppointment.impl';
 import globalValidator from '../../middleware/globalValidator/globalValidator';
-import { validateBookedAppointment } from '../../validator/validator';
+import { validateBookedAppointment, validateUpdatedBookedAppointment } from '../../validator/validator';
 import { showAppointments } from '../../service/impl/appointment/showAppointments/showAppointments.impl';
 import { showAppointment } from '../../service/impl/appointment/showAppointment/showAppointment.impl';
+import { updateAppointment } from '../../service/impl/appointment/updateAppointment/updateAppointment.impl';
 const router = express.Router();
 router.post('/book-appointment', authenticationToken, globalValidator(validateBookedAppointment), bookAnAppointment);
 router.get('/show-appointments', authenticationToken, showAppointments);
 router.get('/show-appointment/:id', authenticationToken, showAppointment);
+router.put('/update-appointment/:id', authenticationToken, globalValidator(validateUpdatedBookedAppointment), updateAppointment)
 export default router;

@@ -112,11 +112,19 @@ const validateBookedAppointment = Yup.object().shape({
     notes: Yup.string().required('Appointment notes must be provided').trim(),
     date: Yup.date().optional(),
 });
+const validateUpdatedBookedAppointment = Yup.object().shape({
+    appointmentDate: Yup.string().required('Appointment date must be provided').trim(),
+    status: Yup.mixed().required('Appointment status is required').oneOf(Object.values(AppointmentStatus)),
+    reason: Yup.string().required('Appointment raeson must be provided').trim(),
+    notes: Yup.string().required('Appointment notes must be provided').trim(),
+    date: Yup.date().optional(),
+});
 export {
     validateUserRegisteration,
     validateUserLogin,
     validateUpdatedUserAccount,
     validateAddedPatientRequest,
     validateUpdatedPatientRequest,
-    validateBookedAppointment
+    validateBookedAppointment,
+    validateUpdatedBookedAppointment
 }
