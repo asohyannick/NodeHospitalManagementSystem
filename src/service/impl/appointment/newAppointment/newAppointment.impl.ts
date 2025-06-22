@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import Appointment from "../../../../model/appointment/appointment.model";
 import { StatusCodes } from "http-status-codes";
 import { AppointmentStatus } from "../../../interfac/appointment/appointment.interfac";
-const bookedAppointment = async (req: Request, res: Response): Promise<Response> => {
+const bookedAnAppointment = async (req: Request, res: Response): Promise<Response> => {
     const {
         appointmentDate,
         reason,
@@ -29,5 +29,5 @@ const bookedAppointment = async (req: Request, res: Response): Promise<Response>
 }
 
 export {
-    bookedAppointment
+    bookedAnAppointment
 }
