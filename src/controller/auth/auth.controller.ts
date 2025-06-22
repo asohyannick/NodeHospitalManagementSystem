@@ -9,10 +9,12 @@ import { fetchUsers } from '../../service/impl/auth/retrieveUsers/fetchUsers.imp
 import { fetchUser } from '../../service/impl/auth/fetchUser/fetchUser.impl';
 import { updateUser } from '../../service/impl/auth/updateAccount/updateAccount.impl';
 import { deleteUser } from '../../service/impl/auth/deleteAccount/deleteUser.impl';
+import { requestAccessToken } from '../../service/impl/auth/newRefreshToken/requestAccessToken.impl';
 const router = express.Router();
 router.post('/create-account', globalValidator(validateUserRegisteration), register);
 router.post('/login', authenticationToken, globalValidator(validateUserLogin), login);
 router.post('/logout', authenticationToken, logout);
+router.post('/access-token', authenticationToken, requestAccessToken);
 router.get('/fetch-users', authenticationToken, fetchUsers);
 router.get('/fetch-user/:id', authenticationToken, fetchUser);
 router.put('/update-user/:id', authenticationToken, globalValidator(validateUpdatedUserAccount), updateUser);
