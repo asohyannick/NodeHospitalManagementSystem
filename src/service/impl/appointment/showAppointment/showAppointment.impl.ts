@@ -1,13 +1,17 @@
 import { Request, Response } from "express";
 import Appointment from "../../../../model/appointment/appointment.model";
 import { StatusCodes } from "http-status-codes";
-const showAppointments = async (_req: Request, res: Response): Promise<Response> => {
+const showAppointment = async (req: Request, res: Response): Promise<Response> => {
     try {
-        const appointments = await Appointment.find();
+        const { id } = req.params;
+        const appointment = await Appointment.findById(id);
+        if (!appointment) {
+            return res.status(StatusCodes.NOT_FOUND).json({message: "Appointment doesn't exist!"});
+        }
         return res.status(StatusCodes.OK).json({
             success: true,
-            message: "Appointments have been retrieved successfully!",
-            appointments
+            message: "Appointment has been retrieved successfully!",
+            appointment
         });
     } catch (error) {
         console.error(error);
@@ -16,5 +20,5 @@ const showAppointments = async (_req: Request, res: Response): Promise<Response>
 }
 
 export {
-    showAppointments
+    showAppointment
 }
