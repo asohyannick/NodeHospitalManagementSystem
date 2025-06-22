@@ -4,7 +4,9 @@ import { addPatient } from '../../service/impl/patient/newPatient/newPatient.imp
 import globalValidator from '../../middleware/globalValidator/globalValidator';
 import { validateAddedPatientRequest } from '../../validator/validator';
 import { showPatients } from '../../service/impl/patient/showPatients/showPatients.impl';
+import { showPatient } from '../../service/impl/patient/showPatient/showPatient.impl';
 const router = express.Router();
 router.post('/add-patient', authenticationToken, globalValidator(validateAddedPatientRequest), addPatient);
 router.get('/show-patients', authenticationToken, showPatients);
+router.get('/show-patient/:id', authenticationToken, showPatient);
 export default router;
