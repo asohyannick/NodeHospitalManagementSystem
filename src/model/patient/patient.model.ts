@@ -1,9 +1,9 @@
 import mongoose, { Schema } from "mongoose";
 import { IPatientInterfac, GenderStatus } from "../../service/interfac/patient/patient.interfac";
 const patientSchema: Schema = new Schema<IPatientInterfac>({
-    DocterId: {
+    DoctorId: {
         type: Schema.ObjectId,
-        ref: 'Docter',
+        ref: 'Doctor',
         required: true,
     },
     firstName: {

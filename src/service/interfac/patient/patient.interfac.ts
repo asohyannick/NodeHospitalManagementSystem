@@ -5,7 +5,7 @@ export enum GenderStatus {
     OTHER = 'Other',
 }
 export interface IPatientInterfac extends Document {
-    DocterId: Types.ObjectId;
+    DoctorId: Types.ObjectId;
     firstName: string;
     lastName: string;
     dateOfBirth: string;

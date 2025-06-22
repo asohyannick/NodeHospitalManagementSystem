@@ -1,5 +1,6 @@
 import * as Yup from 'yup';
 import { GenderStatus } from '../service/interfac/patient/patient.interfac';
+import { AppointmentStatus } from '../service/interfac/appointment/appointment.interfac';
 const validateUserRegisteration = Yup.object().shape({
     firstName: Yup.string().required('FirstName must be provided').trim().min(2, 'FirstName must have a minimum of two characters'),
     lastName: Yup.string().required('lastName must be provided').trim().min(2, 'lastName must have a minimum of two characters'),
@@ -103,11 +104,19 @@ const validateUpdatedPatientRequest = Yup.object().shape({
         }),
     }),
     date: Yup.date().optional(),
-})
+});
+const validateBookedAppointment = Yup.object().shape({
+    appointmentDate: Yup.string().required('Appointment date must be provided').trim(),
+    status: Yup.mixed().required('Appointment status is required').oneOf(Object.values(AppointmentStatus)),
+    reason: Yup.string().required('Appointment raeson must be provided').trim(),
+    notes: Yup.string().required('Appointment notes must be provided').trim(),
+    date: Yup.date().optional(),
+});
 export {
     validateUserRegisteration,
     validateUserLogin,
-    validateUpdatedUserAccount, 
+    validateUpdatedUserAccount,
     validateAddedPatientRequest,
-    validateUpdatedPatientRequest
+    validateUpdatedPatientRequest,
+    validateBookedAppointment
 }

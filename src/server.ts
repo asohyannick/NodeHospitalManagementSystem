@@ -7,6 +7,7 @@ import compression from 'compression';
 import helmet from 'helmet';
 import authRoute from './controller/auth/auth.controller';
 import patientRoute from './controller/patient/patient.controller';
+import appointmentRoute from './controller/appointment/appointment.controller';
 const app: Application = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -27,6 +28,7 @@ app.use(helmet());
 // Routes
 app.use(`/api/${API_VERSION}/auth`, authRoute);
 app.use(`/api/${API_VERSION}/patient`, patientRoute);
+app.use(`/api/${API_VERSION}/appointment`, appointmentRoute);
 
 async function serve() {
     try {
