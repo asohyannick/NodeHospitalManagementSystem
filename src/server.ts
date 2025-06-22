@@ -6,10 +6,11 @@ import cors from 'cors';
 import compression from 'compression';
 import helmet from 'helmet';
 import authRoute from './controller/auth/auth.controller';
+import patientRoute from './controller/patient/patient.controller';
 const app: Application = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-const APP_NAME: string = process.env.APP_NAME || 'NodeHospitalManagementSystemAPI';
+const APP_NAME: string = process.env.APP_NAME || 'NodeHospitalManagementSystem';
 const APP_PORT: string | number = parseInt(process.env.APP_PORT || '8080', 10);
 const API_VERSION: string | number = process.env.API_VERSION || 'v1';
 const APP_HOST: string = process.env.APP_HOST || 'localhost';
@@ -25,6 +26,8 @@ app.use(compression());
 app.use(helmet());
 // Routes
 app.use(`/api/${API_VERSION}/auth`, authRoute);
+app.use(`/api/${API_VERSION}/patient`, patientRoute);
+
 async function serve() {
     try {
         await connectedToDB(),
