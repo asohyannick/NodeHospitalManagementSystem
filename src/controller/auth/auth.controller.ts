@@ -1,7 +1,10 @@
 import express from 'express';
 import { register } from '../../service/impl/auth/register/register.impl';
 import globalValidator from '../../middleware/globalValidator/globalValidator';
-import { validateUserRegisteration } from '../../validator/validator';
+import { validateUserLogin, validateUserRegisteration } from '../../validator/validator';
+import { login } from '../../service/impl/auth/login/login.impl';
+import { authenticationToken } from '../../middleware/auth/authenticationMiddleware';
 const router = express.Router();
 router.post('/create-account', globalValidator(validateUserRegisteration), register);
+router.post('/login', authenticationToken, globalValidator(validateUserLogin), login);
 export default router;
