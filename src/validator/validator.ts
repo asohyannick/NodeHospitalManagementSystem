@@ -143,6 +143,30 @@ const validateAddADoctorRequest = Yup.object().shape({
     languages: Yup.array().required('Languages must be provided').of(Yup.string().trim()),
     date: Yup.date().optional(),
 });
+
+const validateUpdatedDoctorRequest = Yup.object().shape({
+    firstName: Yup.string().required('FirstName must be provided').trim().min(2, 'FirstName must have a minimum of two characters'),
+    lastName: Yup.string().required('lastName must be provided').trim().min(2, 'lastName must have a minimum of two characters'),
+    dateOfBirth: Yup.string().required('FirstName must be provided').trim(),
+    gender: Yup.mixed().required('One valued must be provided').oneOf(Object.values(DoctorGender)),
+    specialization: Yup.string().required('Specialization must be provided').trim(),
+    licenseNumber: Yup.string().required('License number must be provided').trim(),
+    address: Yup.object().shape({
+        street: Yup.string().required('Street must be provided').trim(),
+        city: Yup.string().required('City must be provided').trim(),
+        state: Yup.string().required('State must be provided').trim(),
+        zipCode: Yup.string().required('Zip Code must be provided').trim(),
+        country: Yup.string().required('Country must be provided').trim(),
+    }),
+    contact: Yup.object().shape({
+        phone: Yup.number().required('Phone number must be provided').integer(),
+        email: Yup.string().email('Email must be provided').trim().required('Email must be provided'),
+    }),
+    yearsOfExperience: Yup.number().required('Years of experience must be provided').integer(),
+    languages: Yup.array().required('Languages must be provided').of(Yup.string().trim()),
+    date: Yup.date().optional(),
+});
+
 export {
     validateUserRegisteration,
     validateUserLogin,
@@ -151,5 +175,6 @@ export {
     validateUpdatedPatientRequest,
     validateBookedAppointment,
     validateUpdatedBookedAppointment,
-    validateAddADoctorRequest
+    validateAddADoctorRequest,
+    validateUpdatedDoctorRequest
 }
