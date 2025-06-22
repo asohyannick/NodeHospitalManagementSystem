@@ -3,6 +3,8 @@ import { authenticationToken } from '../../middleware/auth/authenticationMiddlew
 import { addADoctor } from '../../service/impl/doctor/addDoctor/addDoctor.impl';
 import globalValidator from '../../middleware/globalValidator/globalValidator';
 import { validateAddADoctorRequest } from '../../validator/validator';
+import { showDoctors } from '../../service/impl/doctor/showDoctors/showDoctors.impl';
 const router = express.Router();
 router.post('/add-doctor', authenticationToken, globalValidator(validateAddADoctorRequest), addADoctor);
+router.get('/show-doctors', authenticationToken, showDoctors);
 export default router;
