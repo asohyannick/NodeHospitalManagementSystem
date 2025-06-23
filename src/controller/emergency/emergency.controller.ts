@@ -6,10 +6,11 @@ import { validateNewEmergencyCase, validateNewUpdatedEmergencyCase } from '../..
 import showEmergencyCases from '../../service/impl/emergency/showEmergencyCases/showEmergencyCases.impl';
 import showEmergencyCase from '../../service/impl/emergency/showEmergency/showEmergencyCase.impl';
 import updateEmergencyCase from '../../service/impl/emergency/updateEmergency/updateEmergencyCase.impl';
+import deleteEmergencyCase from '../../service/impl/emergency/deleteEmergency/deleteEmergency.impl';
 const router = express.Router();
 router.post('/add-new-emergency-case', authenticationToken,globalValidator(validateNewEmergencyCase), addNewEmergencyCase);
 router.get('/show-emergency-cases', authenticationToken, showEmergencyCases);
 router.get('/show-emergency-case/:id', authenticationToken, showEmergencyCase);
 router.put('/update-emergency-case/:id', authenticationToken, globalValidator(validateNewUpdatedEmergencyCase), updateEmergencyCase);
-
+router.delete('/delete-emergency-case/:id', authenticationToken, deleteEmergencyCase);
 export default router;
