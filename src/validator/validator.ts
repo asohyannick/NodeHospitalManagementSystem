@@ -273,6 +273,29 @@ const validateUpdatedPaymentInvoice = Yup.object().shape({
         }))
         .required('Payment information must be provided'),
 });
+
+const validateNewInventory = Yup.object().shape({
+    name:Yup.string().required('Name must be provided').trim(),
+    description:Yup.string().required('Description must be provided').trim(),
+    quantity: Yup.number().required('Quantity value must be provided').integer(),
+    unit: Yup.string().required('Yup must be provided').trim(),
+    price: Yup.number().required('Price must be provided').integer(),
+    category: Yup.string().required('Category must be provided').trim(),
+    supplier: Yup.string().required('Name must be provided').trim(),
+    expirationDate:Yup.date().required('Name must be provided'),
+    reorderLevel: Yup.number().required('ReorderLevel must be provided').integer(),
+});
+const validateNewlyUpdatedInventory = Yup.object().shape({
+    name:Yup.string().required('Name must be provided').trim(),
+    description:Yup.string().required('Description must be provided').trim(),
+    quantity: Yup.number().required('Quantity value must be provided').integer(),
+    unit: Yup.string().required('Yup must be provided').trim(),
+    price: Yup.number().required('Price must be provided').integer(),
+    category: Yup.string().required('Category must be provided').trim(),
+    supplier: Yup.string().required('Name must be provided').trim(),
+    expirationDate:Yup.date().required('Name must be provided'),
+    reorderLevel: Yup.number().required('ReorderLevel must be provided').integer(),
+})
 export {
     validateUserRegisteration,
     validateUserLogin,
@@ -286,5 +309,7 @@ export {
     validateMedicalRecord,
     validateUpdatedMedicalRecord,
     validatePaymentInvoice,
-    validateUpdatedPaymentInvoice
+    validateUpdatedPaymentInvoice,
+    validateNewInventory,
+    validateNewlyUpdatedInventory
 }
