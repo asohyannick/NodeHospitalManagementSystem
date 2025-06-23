@@ -188,6 +188,28 @@ const validateMedicalRecord = Yup.object().shape({
         notes: Yup.string().required('Notes must be provided').trim(),
     }),
     visitDate: Yup.string().required('Visit date must be provided').trim(),
+});
+const validateUpdatedMedicalRecord = Yup.object().shape({
+    medicalHistory: Yup.object().shape({
+        allergies: Yup.array().required('Allergies must be provided').of(Yup.string().trim()),
+        medications: Yup.array().required('Medications must be provided').of(Yup.string().trim()),
+        chronicConditions: Yup.array().required('Chronic conditions must be provided').of(Yup.string().trim()),
+        surgeries: Yup.object().shape({
+            date: Yup.date().optional(),
+            type: Yup.string().required('Type must be provided').trim(),
+        }),
+        familyHistory: Yup.object().shape({
+            relations: Yup.string().required('Relations must be provided').trim(),
+            condtions: Yup.string().required('Conditions must be provided').trim(),
+        }),
+    }),
+    labResults: Yup.object().shape({
+        testName: Yup.string().required('Relations must be provided').trim(),
+        result: Yup.string().required('Results must be provided').trim(),
+        date: Yup.string().required('Date  must be provided').trim(),
+        notes: Yup.string().required('Notes must be provided').trim(),
+    }),
+    visitDate: Yup.string().required('Visit date must be provided').trim(),
 })
 export {
     validateUserRegisteration,
@@ -199,5 +221,6 @@ export {
     validateUpdatedBookedAppointment,
     validateAddADoctorRequest,
     validateUpdatedDoctorRequest,
-    validateMedicalRecord
+    validateMedicalRecord,
+    validateUpdatedMedicalRecord
 }

@@ -10,7 +10,7 @@ const showMedicalRecord = async (req: Request, res: Response): Promise<Response>
         }
         return res.status(StatusCodes.OK).json({
             success: true,
-            message: "Medical reocrd has been retrieved successfully!",
+            message: "Medical record has been retrieved successfully!",
             medicalRecord
         });
     } catch (error) {
