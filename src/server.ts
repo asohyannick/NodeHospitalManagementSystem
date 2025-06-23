@@ -5,6 +5,7 @@ import connectedToDB from './config/databaseConfig/databaseConfig';
 import cors from 'cors';
 import compression from 'compression';
 import helmet from 'helmet';
+import { rateLimit } from 'express-rate-limit'
 import authRoute from './controller/auth/auth.controller';
 import patientRoute from './controller/patient/patient.controller';
 import appointmentRoute from './controller/appointment/appointment.controller';
@@ -31,12 +32,20 @@ if (process.env.NODE_ENV as string === 'development') {
     app.use(morgan('dev'));
 }
 // Security middleware packages 
+const limiter = rateLimit({
+	windowMs: 15 * 60 * 1000, // 15 minutes
+	limit: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
+	standardHeaders: 'draft-8', // draft-6: `RateLimit-*` headers; draft-7 & draft-8: combined `RateLimit` header
+	legacyHeaders: false, // Disable the `X-RateLimit-*` headers.
+	// store: ... , // Redis, Memcached, etc. See below.
+})
 app.use(cors({
     origin: process.env.CLIENT_SIDE as string || '*',
     credentials: true,
 }));
 app.use(compression());
 app.use(helmet());
+app.use(limiter);
 // Routes
 app.use(`/api/${API_VERSION}/auth`, authRoute);
 app.use(`/api/${API_VERSION}/patient`, patientRoute);
