@@ -4,7 +4,9 @@ import { addNewInventory } from '../../service/impl/inventory/addInventory/addIn
 import globalValidator from '../../middleware/globalValidator/globalValidator';
 import { validateNewInventory } from '../../validator/validator';
 import { showInventories } from '../../service/impl/inventory/showInventories/showInventories.impl';
+import { showInventory } from '../../service/impl/inventory/showInventory/showInventory.impl';
 const router = express.Router();
 router.post('/add-new-inventory', authenticationToken, globalValidator(validateNewInventory), addNewInventory);
 router.get('/show-inventories', authenticationToken, showInventories);
+router.get('/show-inventory/:id', authenticationToken, showInventory);
 export default router;
