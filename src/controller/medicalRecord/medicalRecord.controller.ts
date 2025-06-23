@@ -6,9 +6,11 @@ import { validateMedicalRecord, validateUpdatedMedicalRecord } from '../../valid
 import { showMedicalRecords } from '../../service/impl/medicalRecord/showMedicalRecords/showMedicalRecords.impl';
 import { showMedicalRecord } from '../../service/impl/medicalRecord/showMedicalRecord/showMedicalRecord.impl';
 import { updateMedicalRecord } from '../../service/impl/medicalRecord/updateMedicalRecord/updateMedicalRecord.impl';
+import { deleteMedicalRecord } from '../../service/impl/medicalRecord/deleteMedicalRecord/deleteMedicalRecord.impl';
 const router = express.Router();
 router.post('/add-medical-record', authenticationToken, globalValidator(validateMedicalRecord), addMedicalRecord);
 router.get('/show-medical-records', authenticationToken, showMedicalRecords);
 router.get('/show-medical-record/:id', authenticationToken, showMedicalRecord);
 router.put('/update-medical-record/:id', authenticationToken, globalValidator(validateUpdatedMedicalRecord), updateMedicalRecord);
-export default router;
+router.delete('/delete-medical-record/:id', authenticationToken, deleteMedicalRecord);
+export default router
