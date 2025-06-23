@@ -295,7 +295,15 @@ const validateNewlyUpdatedInventory = Yup.object().shape({
     supplier: Yup.string().required('Name must be provided').trim(),
     expirationDate:Yup.date().required('Name must be provided'),
     reorderLevel: Yup.number().required('ReorderLevel must be provided').integer(),
-})
+});
+
+const validateNewPharmacy = Yup.object().shape({
+    name:Yup.string().required('Name must be provided').trim(),
+    location:Yup.string().required('Location must be provided').trim(),
+    phoneNumber: Yup.string().required('Phone number must be provided').trim(),
+    operatingHours: Yup.string().required('Operating hours must be provided').trim(),
+});
+
 export {
     validateUserRegisteration,
     validateUserLogin,
@@ -311,5 +319,6 @@ export {
     validatePaymentInvoice,
     validateUpdatedPaymentInvoice,
     validateNewInventory,
-    validateNewlyUpdatedInventory
+    validateNewlyUpdatedInventory,
+    validateNewPharmacy
 }

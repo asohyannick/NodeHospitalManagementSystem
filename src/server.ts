@@ -12,6 +12,7 @@ import doctorRoute from './controller/doctor/doctor.controller';
 import medicalRecordRoute from './controller/medicalRecord/medicalRecord.controller';
 import paymentInvoiceRoute from './controller/paymentInvoice/paymentInvoice.controller';
 import inventoryRoute from './controller/inventory/inventory.controller';
+import pharmacyRoute from './controller/pharmacy/pharmacy.controller';
 const app: Application = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -37,6 +38,7 @@ app.use(`/api/${API_VERSION}/doctor`, doctorRoute);
 app.use(`/api/${API_VERSION}/medical-record`, medicalRecordRoute);
 app.use(`/api/${API_VERSION}/payment-invoice`, paymentInvoiceRoute);
 app.use(`/api/${API_VERSION}/inventory`, inventoryRoute);
+app.use(`/api/${API_VERSION}/pharmacy`, pharmacyRoute);
 
 
 async function serve() {
