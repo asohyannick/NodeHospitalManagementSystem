@@ -10,7 +10,9 @@ async function connectedToDB() {
         await mongoose.connect(MONGODB_CONNECTION);
         console.log('MongoDB connection is successful');
     } catch (error) {
-        console.error("Failed to connect to MongoDB", error);
+        if (error instanceof Error) {
+            console.error("Failed to connect to MongoDB", error.message);
+        }
     }
 }
 

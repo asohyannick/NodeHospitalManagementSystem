@@ -4,6 +4,7 @@ import { AppointmentStatus } from '../service/interfac/appointment/appointment.i
 import { DoctorGender } from '../service/interfac/doctor/doctor.interfac';
 import { BillingStatus } from '../service/interfac/paymentInvoice/paymentInvoice.interfac';
 import { TestResultStatus } from '../service/interfac/laboratory/laboratory.interfac';
+import { StaffJobRoleStatus } from '../service/interfac/staff/staff.interfac';
 const validateUserRegisteration = Yup.object().shape({
     firstName: Yup.string().required('FirstName must be provided').trim().min(2, 'FirstName must have a minimum of two characters'),
     lastName: Yup.string().required('lastName must be provided').trim().min(2, 'lastName must have a minimum of two characters'),
@@ -377,6 +378,26 @@ const validateNewUpdatedLabTechnician = Yup.object().shape({
     state: Yup.string().required('State must be provided').trim(),
     salary: Yup.number().required('Phone number must be provided').integer(),
     country: Yup.string().required('Country must be provided').trim(),
+});
+
+const validateNewStaffMember = Yup.object().shape({
+    name: Yup.string().required('Name must be provided').trim(),
+    licenseNumber: Yup.string().required('License number must be provided').trim(),
+    phoneNumber: Yup.string().required('Phone number must be provided').trim(),
+    email: Yup.string().required('Email must be provided').trim(),
+    role: Yup.mixed().required('One value must be provided').oneOf(Object.values(StaffJobRoleStatus)),
+    department: Yup.string().required('Department must be provided').trim(),
+    hireDate: Yup.date().required('The hire date must be provided'),
+});
+
+const validateNewUpdatedStaffMember = Yup.object().shape({
+    name: Yup.string().required('Name must be provided').trim(),
+    licenseNumber: Yup.string().required('License number must be provided').trim(),
+    phoneNumber: Yup.string().required('Phone number must be provided').trim(),
+    email: Yup.string().required('Email must be provided').trim(),
+    role: Yup.mixed().required('One value must be provided').oneOf(Object.values(StaffJobRoleStatus)),
+    department: Yup.string().required('Department must be provided').trim(),
+    hireDate: Yup.date().required('The hire date must be provided'),
 })
 export {
     validateUserRegisteration,
@@ -402,4 +423,6 @@ export {
     validateUpdatedLabTestCreation,
     validateNewLabTechnician,
     validateNewUpdatedLabTechnician,
+    validateNewStaffMember,
+    validateNewUpdatedStaffMember
 }
