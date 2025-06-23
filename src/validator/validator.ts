@@ -212,12 +212,66 @@ const validateUpdatedMedicalRecord = Yup.object().shape({
     }),
     visitDate: Yup.string().required('Visit date must be provided').trim(),
 });
+
 const validatePaymentInvoice = Yup.object().shape({
-    items: Yup.array().required('Items must be provided').of(Yup.string().trim()),
-    totalAmount: Yup.number().required('The total amount must be provided').integer(),
-    dueDate: Yup.string().required('The due date must be provided').trim(),
-    status: Yup.mixed().required('One value must be provided').oneOf(Object.values(BillingStatus)),
-    payment: Yup.array().required('Payment information must be provided').of(Yup.string().trim()),
+    items: Yup.array()
+        .of(Yup.object().shape({
+            description: Yup.string().trim().required('Description is required'),
+            amount: Yup.number().required('Amount is required').positive('Amount must be positive'),
+        }))
+        .required('Items must be provided'),
+    
+    totalAmount: Yup.number()
+        .required('The total amount must be provided')
+        .positive('Total amount must be positive'),
+
+    dueDate: Yup.string()
+        .required('The due date must be provided')
+        .trim()
+        .matches(/^\d{4}-\d{2}-\d{2}$/, 'Due date must be in YYYY-MM-DD format'),
+
+    status: Yup.mixed()
+        .required('One value must be provided')
+        .oneOf(Object.values(BillingStatus)),
+
+    payment: Yup.array()
+        .of(Yup.object().shape({
+            transactionId: Yup.string().trim().required('Transaction ID is required'),
+            amount: Yup.number().required('Payment amount is required').positive('Amount must be positive'),
+            method: Yup.string().trim().required('Payment method is required'),
+            status: Yup.mixed().oneOf(Object.values(BillingStatus)).required('Payment status is required'),
+        }))
+        .required('Payment information must be provided'),
+});
+const validateUpdatedPaymentInvoice = Yup.object().shape({
+    items: Yup.array()
+        .of(Yup.object().shape({
+            description: Yup.string().trim().required('Description is required'),
+            amount: Yup.number().required('Amount is required').positive('Amount must be positive'),
+        }))
+        .required('Items must be provided'),
+    
+    totalAmount: Yup.number()
+        .required('The total amount must be provided')
+        .positive('Total amount must be positive'),
+
+    dueDate: Yup.string()
+        .required('The due date must be provided')
+        .trim()
+        .matches(/^\d{4}-\d{2}-\d{2}$/, 'Due date must be in YYYY-MM-DD format'),
+
+    status: Yup.mixed()
+        .required('One value must be provided')
+        .oneOf(Object.values(BillingStatus)),
+
+    payment: Yup.array()
+        .of(Yup.object().shape({
+            transactionId: Yup.string().trim().required('Transaction ID is required'),
+            amount: Yup.number().required('Payment amount is required').positive('Amount must be positive'),
+            method: Yup.string().trim().required('Payment method is required'),
+            status: Yup.mixed().oneOf(Object.values(BillingStatus)).required('Payment status is required'),
+        }))
+        .required('Payment information must be provided'),
 });
 export {
     validateUserRegisteration,
@@ -231,5 +285,6 @@ export {
     validateUpdatedDoctorRequest,
     validateMedicalRecord,
     validateUpdatedMedicalRecord,
-    validatePaymentInvoice
+    validatePaymentInvoice,
+    validateUpdatedPaymentInvoice
 }
