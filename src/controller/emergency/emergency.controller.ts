@@ -4,7 +4,9 @@ import addNewEmergencyCase from '../../service/impl/emergency/addEmergency/addEm
 import globalValidator from '../../middleware/globalValidator/globalValidator';
 import { validateNewEmergencyCase } from '../../validator/validator';
 import showEmergencyCases from '../../service/impl/emergency/showEmergencyCases/showEmergencyCases.impl';
+import showEmergencyCase from '../../service/impl/emergency/showEmergency/showEmergencyCase.impl';
 const router = express.Router();
 router.post('/add-new-emergency-case', authenticationToken,globalValidator(validateNewEmergencyCase), addNewEmergencyCase);
 router.get('/show-emergency-cases', authenticationToken, showEmergencyCases);
+router.get('/show-emergency-case/:id', authenticationToken, showEmergencyCase);
 export default router;
