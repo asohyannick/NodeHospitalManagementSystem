@@ -6,9 +6,11 @@ import { validateNewlyUpdatedPharmacy, validateNewPharmacy } from '../../validat
 import { showPharmacies } from '../../service/impl/pharmacy/showPharmacies/showPharmacies.impl';
 import { showPharmacy } from '../../service/impl/pharmacy/showPharmacy/showPharmacy.impl';
 import { updatePharmacy } from '../../service/impl/pharmacy/updatePharmacy/updatePharmacy.impl';
+import { deletePharmacy } from '../../service/impl/pharmacy/deletePharmacy/deletePharmacy.impl';
 const router = express.Router();
 router.post('/add-new-pharmacy', authenticationToken, globalValidator(validateNewPharmacy), addNewPharmacy);
 router.get('/show-pharmacies', authenticationToken, showPharmacies);
 router.get('/show-pharmacy/:id', authenticationToken, showPharmacy);
 router.put('/update-pharmacy/:id', authenticationToken, globalValidator(validateNewlyUpdatedPharmacy), updatePharmacy);
+router.delete('/delete-pharmacy/:id', authenticationToken, deletePharmacy);
 export default router;
