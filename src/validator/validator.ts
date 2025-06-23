@@ -2,6 +2,7 @@ import * as Yup from 'yup';
 import { GenderStatus } from '../service/interfac/patient/patient.interfac';
 import { AppointmentStatus } from '../service/interfac/appointment/appointment.interfac';
 import { DoctorGender } from '../service/interfac/doctor/doctor.interfac';
+import { BillingStatus } from '../service/interfac/paymentInvoice/paymentInvoice.interfac';
 const validateUserRegisteration = Yup.object().shape({
     firstName: Yup.string().required('FirstName must be provided').trim().min(2, 'FirstName must have a minimum of two characters'),
     lastName: Yup.string().required('lastName must be provided').trim().min(2, 'lastName must have a minimum of two characters'),
@@ -210,7 +211,14 @@ const validateUpdatedMedicalRecord = Yup.object().shape({
         notes: Yup.string().required('Notes must be provided').trim(),
     }),
     visitDate: Yup.string().required('Visit date must be provided').trim(),
-})
+});
+const validatePaymentInvoice = Yup.object().shape({
+    items: Yup.array().required('Items must be provided').of(Yup.string().trim()),
+    totalAmount: Yup.number().required('The total amount must be provided').integer(),
+    dueDate: Yup.string().required('The due date must be provided').trim(),
+    status: Yup.mixed().required('One value must be provided').oneOf(Object.values(BillingStatus)),
+    payment: Yup.array().required('Payment information must be provided').of(Yup.string().trim()),
+});
 export {
     validateUserRegisteration,
     validateUserLogin,
@@ -222,5 +230,6 @@ export {
     validateAddADoctorRequest,
     validateUpdatedDoctorRequest,
     validateMedicalRecord,
-    validateUpdatedMedicalRecord
+    validateUpdatedMedicalRecord,
+    validatePaymentInvoice
 }
