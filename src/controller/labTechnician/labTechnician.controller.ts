@@ -4,7 +4,9 @@ import { addNewLabTechnician } from '../../service/impl/labTechnician/addLabTech
 import globalValidator from '../../middleware/globalValidator/globalValidator';
 import { validateNewLabTechnician } from '../../validator/validator';
 import { showLabTechnicians } from '../../service/impl/labTechnician/showLabTechnicians/showLabTechnicians.impl';
+import { showLabTechnician } from '../../service/impl/labTechnician/showLabTechnician/showLabTechnician.impl';
 const router = express.Router();
 router.post('/add-new-lab-technician', authenticationToken, globalValidator(validateNewLabTechnician), addNewLabTechnician);
 router.get('/show-lab-technicians', authenticationToken, showLabTechnicians);
+router.get('/show-lab-technician/:id', authenticationToken, showLabTechnician);
 export default router;
