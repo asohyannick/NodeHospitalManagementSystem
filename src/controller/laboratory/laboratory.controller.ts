@@ -3,6 +3,8 @@ import { authenticationToken } from "../../middleware/auth/authenticationMiddlew
 import { createNewLabTest } from "../../service/impl/laboratory/addLaboratory/addLaboratory.impl";
 import globalValidator from "../../middleware/globalValidator/globalValidator";
 import { validateLabTestCreation } from "../../validator/validator";
+import { showLabTests } from "../../service/impl/laboratory/showLaboratories/showLaboratories.impl";
 const router = express.Router();
 router.post('/create-lab-test', authenticationToken, globalValidator(validateLabTestCreation), createNewLabTest);
+router.get('/show-lab-tests', authenticationToken, showLabTests);
 export default router;
