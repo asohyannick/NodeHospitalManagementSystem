@@ -17,6 +17,7 @@ import pharmacistRoute from './controller/pharmacist/pharmacist.controller';
 import labTestRoute from './controller/laboratory/laboratory.controller';
 import labTechnicianRoute from './controller/labTechnician/labTechnician.controller';
 import staffMemberRoute from './controller/staff/staff.controller';
+import emergencyRoute from './controller/emergency/emergency.controller';
 import { notFoundRouteHandler } from './middleware/404/notFound.404';
 import { backendErrorHandler } from './middleware/500/backendServerError.middle';
 const app: Application = express();
@@ -49,6 +50,7 @@ app.use(`/api/${API_VERSION}/pharmacist`, pharmacistRoute);
 app.use(`/api/${API_VERSION}/laboratory`, labTestRoute);
 app.use(`/api/${API_VERSION}/lab-technician`, labTechnicianRoute);
 app.use(`/api/${API_VERSION}/staff-member`, staffMemberRoute);
+app.use(`/api/${API_VERSION}/emergency`, emergencyRoute);
 
 // Custom middleware route
 app.use(notFoundRouteHandler);
