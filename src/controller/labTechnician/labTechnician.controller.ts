@@ -3,6 +3,8 @@ import { authenticationToken } from '../../middleware/auth/authenticationMiddlew
 import { addNewLabTechnician } from '../../service/impl/labTechnician/addLabTechnician/addLabTechnician.impl';
 import globalValidator from '../../middleware/globalValidator/globalValidator';
 import { validateNewLabTechnician } from '../../validator/validator';
+import { showLabTechnicians } from '../../service/impl/labTechnician/showLabTechnicians/showLabTechnicians.impl';
 const router = express.Router();
 router.post('/add-new-lab-technician', authenticationToken, globalValidator(validateNewLabTechnician), addNewLabTechnician);
+router.get('/show-lab-technicians', authenticationToken, showLabTechnicians);
 export default router;
