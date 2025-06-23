@@ -7,8 +7,10 @@ import { showPaymentInvoices } from '../../service/impl/paymentInvoice/showPayme
 import { showPaymentInvoice } from '../../service/impl/paymentInvoice/showPaymentInvoice/showPaymentInvoice.impl';
 import { updatePaymentInvoice } from '../../service/impl/paymentInvoice/updatePaymentInvoice/updatePaymentInvoice.impl';
 import { deletePaymentInvoice } from '../../service/impl/paymentInvoice/deletePaymentInvoice/deletePaymentInvoice.impl';
+import { refundPaymentInvoice } from '../../service/impl/paymentInvoice/refundPaymentInvoice/refundPaymentInvoice.impl';
 const router = express.Router();
 router.post('/create-payment-invoice', authenticationToken, globalValidator(validatePaymentInvoice), createPaymentInvoice);
+router.post('/refund-payment-invoice', authenticationToken, refundPaymentInvoice);
 router.get('/show-payment-invoices', authenticationToken, showPaymentInvoices);
 router.get('/show-payment-invoice/:id', authenticationToken, showPaymentInvoice);
 router.put('/update-payment-invoice/:id', authenticationToken, globalValidator(validateUpdatedPaymentInvoice), updatePaymentInvoice);
