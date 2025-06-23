@@ -304,6 +304,14 @@ const validateNewPharmacy = Yup.object().shape({
     operatingHours: Yup.string().required('Operating hours must be provided').trim(),
 });
 
+const validateNewlyUpdatedPharmacy = Yup.object().shape({
+    name:Yup.string().required('Name must be provided').trim(),
+    location:Yup.string().required('Location must be provided').trim(),
+    phoneNumber: Yup.string().required('Phone number must be provided').trim(),
+    operatingHours: Yup.string().required('Operating hours must be provided').trim(),
+});
+
+
 export {
     validateUserRegisteration,
     validateUserLogin,
@@ -320,5 +328,6 @@ export {
     validateUpdatedPaymentInvoice,
     validateNewInventory,
     validateNewlyUpdatedInventory,
-    validateNewPharmacy
+    validateNewPharmacy,
+    validateNewlyUpdatedPharmacy
 }
