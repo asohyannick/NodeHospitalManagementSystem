@@ -4,7 +4,9 @@ import { addMedicalRecord } from '../../service/impl/medicalRecord/addMedicalRec
 import globalValidator from '../../middleware/globalValidator/globalValidator';
 import { validateMedicalRecord } from '../../validator/validator';
 import { showMedicalRecords } from '../../service/impl/medicalRecord/showMedicalRecords/showMedicalRecords.impl';
+import { showMedicalRecord } from '../../service/impl/medicalRecord/showMedicalRecord/showMedicalRecord.impl';
 const router = express.Router();
 router.post('/add-medical-record', authenticationToken, globalValidator(validateMedicalRecord), addMedicalRecord);
 router.get('/show-medical-records', authenticationToken, showMedicalRecords);
+router.get('/show-medical-record/:id', authenticationToken, showMedicalRecord);
 export default router;
