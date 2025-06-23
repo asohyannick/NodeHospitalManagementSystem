@@ -2,11 +2,14 @@ import express from 'express';
 import { authenticationToken } from '../../middleware/auth/authenticationMiddleware';
 import createNewStaffMember from '../../service/impl/staff/addNewStaff/addNewStaffMember.impl';
 import globalValidator from '../../middleware/globalValidator/globalValidator';
-import { validateNewStaffMember } from '../../validator/validator';
+import { validateNewStaffMember, validateNewUpdatedStaffMember } from '../../validator/validator';
 import showStaffMembers from '../../service/impl/staff/showStaffs/showStaffMembers.impl';
 import showStaffMember from '../../service/impl/staff/showStaff/showStaffMember.impl';
+import updateStaffMember from '../../service/impl/staff/updateStaff/updateStaffMember.impl';
 const router = express.Router();
 router.post('/add-new-staff-member', authenticationToken, globalValidator(validateNewStaffMember), createNewStaffMember);
 router.get('/show-staff-members', authenticationToken, showStaffMembers);
 router.get('/show-staff-member/:id', authenticationToken, showStaffMember);
+router.put('/update-staff-member/:id', authenticationToken, globalValidator(validateNewUpdatedStaffMember), updateStaffMember);
+
 export default router;
