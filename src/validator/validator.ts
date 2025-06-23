@@ -353,6 +353,31 @@ const validateUpdatedLabTestCreation = Yup.object().shape({
     testResult: Yup.mixed().required('Test result must be provided').oneOf(Object.values(TestResultStatus)),
 });
 
+const validateNewLabTechnician = Yup.object().shape({
+    name: Yup.string().required('Name must be provided').trim(),
+    licenseNumber: Yup.string().required('License number must be provided').trim(),
+    phoneNumber: Yup.string().required('Phone number must be provided').trim(),
+    email: Yup.string().required('Email must be provided').trim(),
+    zipCode: Yup.string().required('Zip code must be provided').trim(),
+    street: Yup.string().required('Street name must be provided').trim(),
+    city: Yup.string().required('City must be provided').trim(),
+    state: Yup.string().required('State must be provided').trim(),
+    salary: Yup.number().required('Phone number must be provided').integer(),
+    country: Yup.string().required('Country must be provided').trim(),
+});
+
+const validateNewUpdatedLabTechnician = Yup.object().shape({
+    name: Yup.string().required('Name must be provided').trim(),
+    licenseNumber: Yup.string().required('License number must be provided').trim(),
+    phoneNumber: Yup.string().required('Phone number must be provided').trim(),
+    email: Yup.string().required('Email must be provided').trim(),
+    zipCode: Yup.string().required('Zip code must be provided').trim(),
+    street: Yup.string().required('Street name must be provided').trim(),
+    city: Yup.string().required('City must be provided').trim(),
+    state: Yup.string().required('State must be provided').trim(),
+    salary: Yup.number().required('Phone number must be provided').integer(),
+    country: Yup.string().required('Country must be provided').trim(),
+})
 export {
     validateUserRegisteration,
     validateUserLogin,
@@ -374,5 +399,7 @@ export {
     validateNewPharmacist,
     validateNewlyUpdatedPharmacist,
     validateLabTestCreation,
-    validateUpdatedLabTestCreation
+    validateUpdatedLabTestCreation,
+    validateNewLabTechnician,
+    validateNewUpdatedLabTechnician,
 }
