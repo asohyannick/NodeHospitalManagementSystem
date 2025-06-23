@@ -3,6 +3,7 @@ import { GenderStatus } from '../service/interfac/patient/patient.interfac';
 import { AppointmentStatus } from '../service/interfac/appointment/appointment.interfac';
 import { DoctorGender } from '../service/interfac/doctor/doctor.interfac';
 import { BillingStatus } from '../service/interfac/paymentInvoice/paymentInvoice.interfac';
+import { TestResultStatus } from '../service/interfac/laboratory/laboratory.interfac';
 const validateUserRegisteration = Yup.object().shape({
     firstName: Yup.string().required('FirstName must be provided').trim().min(2, 'FirstName must have a minimum of two characters'),
     lastName: Yup.string().required('lastName must be provided').trim().min(2, 'lastName must have a minimum of two characters'),
@@ -335,8 +336,22 @@ const validateNewlyUpdatedPharmacist = Yup.object().shape({
     state: Yup.string().required('State must be provided').trim(),
     salary: Yup.number().required('Phone number must be provided').integer(),
     country: Yup.string().required('Country must be provided').trim(),
-})
+});
+const validateLabTestCreation = Yup.object().shape({
+    name: Yup.string().required('Lab technician\'s  name must be provided').trim(),
+    location: Yup.string().required('Lab technician\'s location must be provided').trim(),
+    phoneNumber: Yup.string().required('Lab technician\'s phone number must be provided').trim(),
+    operatingHours: Yup.string().required('Operating hours must be provided').trim(),
+    testResult: Yup.mixed().required('Test result must be provided').oneOf(Object.values(TestResultStatus)),
+});
 
+const validateUpdatedLabTestCreation = Yup.object().shape({
+    name: Yup.string().required('Lab technician\'s  name must be provided').trim(),
+    location: Yup.string().required('Lab technician\'s location must be provided').trim(),
+    phoneNumber: Yup.string().required('Lab technician\'s phone number must be provided').trim(),
+    operatingHours: Yup.string().required('Operating hours must be provided').trim(),
+    testResult: Yup.mixed().required('Test result must be provided').oneOf(Object.values(TestResultStatus)),
+});
 
 export {
     validateUserRegisteration,
@@ -357,5 +372,7 @@ export {
     validateNewPharmacy,
     validateNewlyUpdatedPharmacy,
     validateNewPharmacist,
-    validateNewlyUpdatedPharmacist
+    validateNewlyUpdatedPharmacist,
+    validateLabTestCreation,
+    validateUpdatedLabTestCreation
 }
