@@ -1,10 +1,12 @@
 import express from "express";
 import { authenticationToken } from "../../middleware/auth/authenticationMiddleware";
-import { createNewLabTest } from "../../service/impl/laboratory/addLaboratory/addLaboratory.impl";
+import { createNewLabTest } from "../../service/impl/laboratory/addLaboratory/addLabTest.impl";
 import globalValidator from "../../middleware/globalValidator/globalValidator";
 import { validateLabTestCreation } from "../../validator/validator";
-import { showLabTests } from "../../service/impl/laboratory/showLaboratories/showLaboratories.impl";
+import { showLabTests } from "../../service/impl/laboratory/showLaboratories/showLabTests.impl";
+import { showLabTest } from "../../service/impl/laboratory/showLaboratory/showLabTest.impl";
 const router = express.Router();
 router.post('/create-lab-test', authenticationToken, globalValidator(validateLabTestCreation), createNewLabTest);
 router.get('/show-lab-tests', authenticationToken, showLabTests);
+router.get('/show-lab-test/:id', authenticationToken, showLabTest);
 export default router;
