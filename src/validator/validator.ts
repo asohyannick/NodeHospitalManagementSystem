@@ -220,7 +220,7 @@ const validatePaymentInvoice = Yup.object().shape({
             amount: Yup.number().required('Amount is required').positive('Amount must be positive'),
         }))
         .required('Items must be provided'),
-    
+
     totalAmount: Yup.number()
         .required('The total amount must be provided')
         .positive('Total amount must be positive'),
@@ -250,7 +250,7 @@ const validateUpdatedPaymentInvoice = Yup.object().shape({
             amount: Yup.number().required('Amount is required').positive('Amount must be positive'),
         }))
         .required('Items must be provided'),
-    
+
     totalAmount: Yup.number()
         .required('The total amount must be provided')
         .positive('Total amount must be positive'),
@@ -275,42 +275,54 @@ const validateUpdatedPaymentInvoice = Yup.object().shape({
 });
 
 const validateNewInventory = Yup.object().shape({
-    name:Yup.string().required('Name must be provided').trim(),
-    description:Yup.string().required('Description must be provided').trim(),
+    name: Yup.string().required('Name must be provided').trim(),
+    description: Yup.string().required('Description must be provided').trim(),
     quantity: Yup.number().required('Quantity value must be provided').integer(),
     unit: Yup.string().required('Yup must be provided').trim(),
     price: Yup.number().required('Price must be provided').integer(),
     category: Yup.string().required('Category must be provided').trim(),
     supplier: Yup.string().required('Name must be provided').trim(),
-    expirationDate:Yup.date().required('Name must be provided'),
+    expirationDate: Yup.date().required('Name must be provided'),
     reorderLevel: Yup.number().required('ReorderLevel must be provided').integer(),
 });
 const validateNewlyUpdatedInventory = Yup.object().shape({
-    name:Yup.string().required('Name must be provided').trim(),
-    description:Yup.string().required('Description must be provided').trim(),
+    name: Yup.string().required('Name must be provided').trim(),
+    description: Yup.string().required('Description must be provided').trim(),
     quantity: Yup.number().required('Quantity value must be provided').integer(),
     unit: Yup.string().required('Yup must be provided').trim(),
     price: Yup.number().required('Price must be provided').integer(),
     category: Yup.string().required('Category must be provided').trim(),
     supplier: Yup.string().required('Name must be provided').trim(),
-    expirationDate:Yup.date().required('Name must be provided'),
+    expirationDate: Yup.date().required('Name must be provided'),
     reorderLevel: Yup.number().required('ReorderLevel must be provided').integer(),
 });
 
 const validateNewPharmacy = Yup.object().shape({
-    name:Yup.string().required('Name must be provided').trim(),
-    location:Yup.string().required('Location must be provided').trim(),
+    name: Yup.string().required('Name must be provided').trim(),
+    location: Yup.string().required('Location must be provided').trim(),
     phoneNumber: Yup.string().required('Phone number must be provided').trim(),
     operatingHours: Yup.string().required('Operating hours must be provided').trim(),
 });
 
 const validateNewlyUpdatedPharmacy = Yup.object().shape({
-    name:Yup.string().required('Name must be provided').trim(),
-    location:Yup.string().required('Location must be provided').trim(),
+    name: Yup.string().required('Name must be provided').trim(),
+    location: Yup.string().required('Location must be provided').trim(),
     phoneNumber: Yup.string().required('Phone number must be provided').trim(),
     operatingHours: Yup.string().required('Operating hours must be provided').trim(),
 });
 
+const validateNewPharmacist = Yup.object().shape({
+    name: Yup.string().required('Name must be provided').trim(),
+    licenseNumber: Yup.string().required('License number must be provided').trim(),
+    phoneNumber: Yup.string().required('Phone number must be provided').trim(),
+    email: Yup.string().required('Email must be provided').trim(),
+    zipCode: Yup.string().required('Zip code must be provided').trim(),
+    street: Yup.string().required('Street name must be provided').trim(),
+    city: Yup.string().required('City must be provided').trim(),
+    state: Yup.string().required('State must be provided').trim(),
+    salary: Yup.number().required('Phone number must be provided').integer(),
+    country: Yup.string().required('Country must be provided').trim(),
+})
 
 export {
     validateUserRegisteration,
@@ -329,5 +341,6 @@ export {
     validateNewInventory,
     validateNewlyUpdatedInventory,
     validateNewPharmacy,
-    validateNewlyUpdatedPharmacy
+    validateNewlyUpdatedPharmacy,
+    validateNewPharmacist
 }
