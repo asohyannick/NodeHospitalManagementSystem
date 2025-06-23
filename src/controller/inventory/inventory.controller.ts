@@ -3,6 +3,8 @@ import { authenticationToken } from '../../middleware/auth/authenticationMiddlew
 import { addNewInventory } from '../../service/impl/inventory/addInventory/addInventory.impl';
 import globalValidator from '../../middleware/globalValidator/globalValidator';
 import { validateNewInventory } from '../../validator/validator';
+import { showInventories } from '../../service/impl/inventory/showInventories/showInventories.impl';
 const router = express.Router();
 router.post('/add-new-inventory', authenticationToken, globalValidator(validateNewInventory), addNewInventory);
+router.get('/show-inventories', authenticationToken, showInventories);
 export default router;
