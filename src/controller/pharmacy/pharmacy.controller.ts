@@ -4,7 +4,9 @@ import { addNewPharmacy } from '../../service/impl/pharmacy/addPharmacy/addPharm
 import globalValidator from '../../middleware/globalValidator/globalValidator';
 import { validateNewPharmacy } from '../../validator/validator';
 import { showPharmacies } from '../../service/impl/pharmacy/showPharmacies/showPharmacies.impl';
+import { showPharmacy } from '../../service/impl/pharmacy/showPharmacy/showPharmacy.impl';
 const router = express.Router();
 router.post('/add-new-pharmacy', authenticationToken, globalValidator(validateNewPharmacy), addNewPharmacy);
 router.get('/show-pharmacies', authenticationToken, showPharmacies);
+router.get('/show-pharmacy/:id', authenticationToken, showPharmacy);
 export default router;
