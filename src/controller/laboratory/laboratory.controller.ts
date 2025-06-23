@@ -6,9 +6,11 @@ import { validateLabTestCreation, validateUpdatedLabTestCreation } from "../../v
 import { showLabTests } from "../../service/impl/laboratory/showLaboratories/showLabTests.impl";
 import { showLabTest } from "../../service/impl/laboratory/showLaboratory/showLabTest.impl";
 import { updateLabTest } from "../../service/impl/laboratory/updateLaboratory/updateLabTest.impl";
+import { deleteLabTest } from "../../service/impl/laboratory/deleteLaboratory/deleteLabTest.impl";
 const router = express.Router();
 router.post('/create-lab-test', authenticationToken, globalValidator(validateLabTestCreation), createNewLabTest);
 router.get('/show-lab-tests', authenticationToken, showLabTests);
 router.get('/show-lab-test/:id', authenticationToken, showLabTest);
 router.put('/update-lab-test/:id', authenticationToken, globalValidator(validateUpdatedLabTestCreation), updateLabTest);
+router.delete('/delete-lab-test/:id', authenticationToken, deleteLabTest);
 export default router;
