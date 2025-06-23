@@ -6,10 +6,11 @@ import { validateNewlyUpdatedPharmacist,validateNewPharmacist } from '../../vali
 import showPharmacists from '../../service/impl/pharmacist/showPharmacists/showPharmacists.impl';
 import showPharmacist from '../../service/impl/pharmacist/showPharmacist/showPharmacist.impl';
 import updatePharmacist from '../../service/impl/pharmacist/updatePharmacist/updatePharmacist.impl';
+import deletePharmacist from '../../service/impl/pharmacist/deletePharmacist/deletePharmacist.impl';
 const router = express.Router();
 router.post('/add-new-pharmacist', authenticationToken, globalValidator(validateNewPharmacist), addANewPharmacist);
 router.get('/show-pharmacists', authenticationToken, showPharmacists);
 router.get('/show-pharmacist/:id', authenticationToken, showPharmacist);
 router.put('/update-pharmacist/:id', authenticationToken, globalValidator(validateNewlyUpdatedPharmacist), updatePharmacist);
-
+router.delete('/delete-pharmacist/:id', authenticationToken, deletePharmacist);
 export default router;
