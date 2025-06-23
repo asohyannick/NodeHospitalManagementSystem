@@ -3,6 +3,8 @@ import { authenticationToken } from '../../middleware/auth/authenticationMiddlew
 import createNewStaffMember from '../../service/impl/staff/addNewStaff/addNewStaff.impl';
 import globalValidator from '../../middleware/globalValidator/globalValidator';
 import { validateNewStaffMember } from '../../validator/validator';
+import showStaffMembers from '../../service/impl/staff/showStaffs/showStaffs.impl';
 const router = express.Router();
 router.post('/add-new-staff-member', authenticationToken, globalValidator(validateNewStaffMember), createNewStaffMember);
+router.get('/show-staff-members', authenticationToken, showStaffMembers);
 export default router;

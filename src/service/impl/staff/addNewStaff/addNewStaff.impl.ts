@@ -21,7 +21,7 @@ const createNewStaffMember = async (req: Request, res: Response): Promise<Respon
         await newStaff.save();
         return res.status(StatusCodes.CREATED).json({
             success: true,
-            message: "A new staff member as been added successfully!",
+            message: "A new staff member has been added successfully!",
             newStaff
         });
     } catch (error) {
