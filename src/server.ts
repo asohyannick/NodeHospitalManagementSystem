@@ -13,6 +13,8 @@ import medicalRecordRoute from './controller/medicalRecord/medicalRecord.control
 import paymentInvoiceRoute from './controller/paymentInvoice/paymentInvoice.controller';
 import inventoryRoute from './controller/inventory/inventory.controller';
 import pharmacyRoute from './controller/pharmacy/pharmacy.controller';
+import { notFoundRouteHandler } from './middleware/404/notFound.404';
+import { backendErrorHandler } from './middleware/500/backendServerError.middle';
 const app: Application = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -40,7 +42,9 @@ app.use(`/api/${API_VERSION}/payment-invoice`, paymentInvoiceRoute);
 app.use(`/api/${API_VERSION}/inventory`, inventoryRoute);
 app.use(`/api/${API_VERSION}/pharmacy`, pharmacyRoute);
 
-
+// Custom middleware route
+app.use(notFoundRouteHandler);
+app.use(backendErrorHandler);
 async function serve() {
     try {
         await connectedToDB(),
